@@ -4,7 +4,8 @@
   "description": "Snake Game in a Javascript Matrix",
   "main": "./src/snake-game.js",
   "scripts": {
-    "test": "mocha ./tests"
+    "test": "mocha ./tests",
+    "build": "webpack"
   },
   "author": "Ciro S. Costa <ciro9758@gmail.com> (http://cirocosta.github.io/)",
   "license": "MIT",

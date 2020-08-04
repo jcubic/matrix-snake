@@ -39,6 +39,9 @@ var DIR = {
   left: 'left',
   down: 'down'
 };
+
+var SNAKE = 1;
+var FRUIT = 2;
 var CRASH = 'CRASHHHH!';
 
 /**
@@ -156,8 +159,8 @@ function stampOnMatrix (snake, matrix, fruit) {
   var newMatrix = JSON.parse(JSON.stringify(matrix));
 
   for (var key in snake)
-    newMatrix[snake[key][1]][snake[key][0]] = 1;
-  fruit && (newMatrix[fruit[1]][fruit[0]] = 1);
+    newMatrix[snake[key][1]][snake[key][0]] = SNAKE;
+  fruit && (newMatrix[fruit[1]][fruit[0]] = FRUIT);
 
   return newMatrix;
 }
