@@ -52,8 +52,29 @@ CbObj.prototype.emitDir = function(dir) {
   this.emit('dir', this.directions[dI]);
 };
 
-function _randomCoord (w, h) {
-  return [Math.random()*w|0,Math.random()*h|0];
+function _freeSlots(w, h, _snake) {
+  var slots = [];
+  for (var i = w; i--;) {
+    for (var j = h; j--;) {
+      var taken = _snake.find(function(point) {
+        return point[0] === i && point[1] === j;
+      });
+      if (!taken) {
+        slots.push([i,j]);
+      }
+    }
+  }
+  return slots;
+}
+
+
+function _randomCoord(w, h, _snake) {
+  if (!_snake) {
+    return [Math.random()*w|0,Math.random()*h|0];
+  }
+  var points = _freeSlots(w, h, _snake);
+  var i = Math.floor(Math.random() * points.length);
+  return points[i];
 }
 
 /**
@@ -88,7 +109,7 @@ function prepare (w, h, cbObj, onFruitEaten, onCrash) {
 
       _snake = move(_snake, dir, newDir, w, h, _fruit, function () {
         _fruits++;
-        _fruit = _randomCoord(w, h);
+        _fruit = _randomCoord(w, h, _snake);
         onFruitEaten && onFruitEaten(_fruits);
       }, function (node) {
         _crashed = node;

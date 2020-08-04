@@ -5,5 +5,6 @@ module.exports = {
     filename: 'matrix-snake.js',
     libraryTarget: 'umd',
     library: 'SnakeGame'
-  }
+  },
+  devtool: 'source-map'
 };
