@@ -349,8 +349,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	function stampOnMatrix (snake, matrix, fruit) {
 	  var newMatrix = JSON.parse(JSON.stringify(matrix));
 	
-	  for (var key in snake)
-	    newMatrix[snake[key][1]][snake[key][0]] = SNAKE;
+	  for (var key in snake) {
+	    if (snake.hasOwnProperty(key)) {
+	      newMatrix[snake[key][1]][snake[key][0]] = SNAKE;
+	    }
+	  }
 	  fruit && (newMatrix[fruit[1]][fruit[0]] = FRUIT);
 	
 	  return newMatrix;
